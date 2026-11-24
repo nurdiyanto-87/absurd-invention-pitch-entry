@@ -16,6 +16,9 @@ PITCH = (
 
 
 def main() -> None:
+    # The gate requires 1-220 UTF-8 characters, a single sentence.
+    assert 1 <= len(PITCH) <= 220, f"pitch is {len(PITCH)} chars"
+    assert PITCH.count(".") == 1 and "\n" not in PITCH
     output = os.environ.get("ENTRY_OUTPUT", "/output/entry.txt")
     os.makedirs(os.path.dirname(output) or ".", exist_ok=True)
     with open(output, "w", encoding="utf-8") as f:
